@@ -2,6 +2,7 @@ import argv
 import challenge0
 import challenge1
 import challenge2
+import challenge3
 import gleam/dict
 import gleam/io
 import gleam/result
@@ -33,6 +34,7 @@ pub fn main() -> Nil {
       #("0", challenge0.solve),
       #("1", challenge1.solve),
       #("2", challenge2.solve),
+      #("3", challenge3.solve),
     ])
 
   case argv.load().arguments {
