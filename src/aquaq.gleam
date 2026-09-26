@@ -1,13 +1,16 @@
 import argv
 import challenge0
 import challenge1
+import challenge2
 import gleam/dict
 import gleam/io
 import gleam/result
+import gleam/string
 import simplifile
 
 fn get_input(challenge_index: String) -> Result(String, String) {
   simplifile.read("inputs/" <> challenge_index <> ".txt")
+  |> result.map(string.remove_suffix(_, "\n"))
   |> result.map_error(fn(_) { "error opening challenge input" })
 }
 
@@ -29,6 +32,7 @@ pub fn main() -> Nil {
     dict.from_list([
       #("0", challenge0.solve),
       #("1", challenge1.solve),
+      #("2", challenge2.solve),
     ])
 
   case argv.load().arguments {
