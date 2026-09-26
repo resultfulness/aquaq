@@ -1,0 +1,42 @@
+import argv
+import challenge0
+import challenge1
+import gleam/dict
+import gleam/io
+import gleam/result
+import simplifile
+
+fn get_input(challenge_index: String) -> Result(String, String) {
+  simplifile.read("inputs/" <> challenge_index <> ".txt")
+  |> result.map_error(fn(_) { "error opening challenge input" })
+}
+
+fn print_solution(
+  solution_index: String,
+  solver: fn(String) -> Result(String, String),
+) -> Nil {
+  case
+    get_input(solution_index)
+    |> result.try(solver)
+  {
+    Ok(solution) -> io.println(solution)
+    Error(error) -> io.println_error("error: " <> error)
+  }
+}
+
+pub fn main() -> Nil {
+  let solvers =
+    dict.from_list([
+      #("0", challenge0.solve),
+      #("1", challenge1.solve),
+    ])
+
+  case argv.load().arguments {
+    [challenge_index] ->
+      case dict.get(solvers, challenge_index) {
+        Ok(solver) -> print_solution(challenge_index, solver)
+        Error(_) -> io.println_error("no such challenge: " <> challenge_index)
+      }
+    _ -> io.println("usage: ./aquaq <challenge>")
+  }
+}
