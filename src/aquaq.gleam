@@ -6,6 +6,7 @@ import challenge3
 import challenge4
 import challenge5
 import challenge6
+import challenge7
 import challenge9
 import gleam/dict
 import gleam/io
@@ -42,6 +43,7 @@ pub fn main() -> Nil {
       #("4", challenge4.solve),
       #("5", challenge5.solve),
       #("6", challenge6.solve),
+      #("7", challenge7.solve),
       #("9", challenge9.solve),
     ])
 
