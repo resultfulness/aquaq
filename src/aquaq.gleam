@@ -9,6 +9,7 @@ import challenge6
 import challenge7
 import challenge8
 import challenge9
+import challenge10
 import gleam/dict
 import gleam/io
 import gleam/result
@@ -47,6 +48,7 @@ pub fn main() -> Nil {
       #("7", challenge7.solve),
       #("8", challenge8.solve),
       #("9", challenge9.solve),
+      #("10", challenge10.solve),
     ])
 
   case argv.load().arguments {
